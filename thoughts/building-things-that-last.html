@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>On building things that last — Alip Arslan</title>
+  <meta name="description" content="Thoughts on building software that endures, and why longevity matters more than speed." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='42' fill='%237352B5'/></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../post.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="container">
+      <div class="nav-left">
+        <a href="../index.html" class="nav-logo page-link">
+          <span class="sig">●</span>
+          alip.dev
+        </a>
+      </div>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+        <span class="icon-sun">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        </span>
+        <span class="icon-moon">
+          <svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ARTICLE -->
+  <main class="container">
+    <a href="../index.html" class="back-link page-link">← back</a>
+    <header class="article-header">
+      <div class="article-meta">
+        <span>feb 14, 2026</span>
+        <span class="article-meta-dot"></span>
+        <span>6 min read</span>
+      </div>
+      <h1 class="article-title">On building things that last</h1>
+      <p class="article-subtitle">Why endurance matters more than velocity, and how to build software you won't be embarrassed by in two years.</p>
+    </header>
+
+    <article class="prose">
+      <p>There's a persistent myth in software that speed is everything. Ship fast. Move fast and break things. Get to market before anyone else. And to some extent, that's true — momentum matters, and perfect is the enemy of shipped.</p>
+
+      <p>But speed without intention is just thrashing. I've seen teams ship features in a week that take six months to untangle. I've written code at 2am that I couldn't understand by the following Tuesday. <strong>Velocity without durability is a debt you pay with interest.</strong></p>
+
+      <h2>The compounding cost of "good enough"</h2>
+
+      <p>When you build something quickly, you make a series of small compromises. Each one seems reasonable in isolation. You skip the test. You hardcode the value. You copy-paste instead of abstracting. You name the variable <code>temp</code> because you'll fix it later.</p>
+
+      <p>You won't fix it later.</p>
+
+      <p>These compromises compound. Not linearly — exponentially. Each shortcut makes the next shortcut more likely, and each one makes the system harder to reason about. After enough of them, you have a codebase that <em>works</em> but that nobody wants to touch.</p>
+
+      <blockquote>
+        <p>The best code is code that's easy to delete, not easy to write.</p>
+      </blockquote>
+
+      <p>I think about this a lot. The things I've built that lasted — the ones I'm still proud of years later — aren't the ones where I was clever. They're the ones where I was <strong>clear</strong>.</p>
+
+      <h2>What "lasting" actually means</h2>
+
+      <p>I don't mean lasting forever. Nothing in software lasts forever, and that's fine. By "lasting" I mean:</p>
+
+      <ul>
+        <li><strong>Readable</strong> — someone new can understand it without a tour guide</li>
+        <li><strong>Changeable</strong> — you can modify behavior without rewriting everything</li>
+        <li><strong>Deletable</strong> — you can remove parts cleanly when they're no longer needed</li>
+        <li><strong>Trustworthy</strong> — it does what it says it does, and you can verify that</li>
+      </ul>
+
+      <p>None of these require fancy architecture or complex abstractions. In fact, the fancier the architecture, the less likely it is to last. The best systems I've worked with are almost boringly simple.</p>
+
+      <h3>An example from a recent project</h3>
+
+      <p>I was building a data pipeline that needed to process events from multiple sources. The "smart" approach would have been to build a generic event processor with plugins and adapters and a configuration DSL. The kind of thing that looks impressive in a design doc.</p>
+
+      <p>Instead, I wrote three separate scripts. One per source. Each one was about 80 lines of code. They shared a small utility library for the output format, but otherwise they were completely independent.</p>
+
+<pre><code>// Each processor is dead simple
+async function processStripeEvents(since) {
+  const events = await stripe.events.list({ created: { gte: since } });
+
+  for (const event of events.data) {
+    const normalized = normalize(event);
+    await store(normalized);
+  }
+
+  return events.data.length;
+}</code></pre>
+
+      <p>Six months later, we needed to add a fourth source. It took an afternoon. We needed to remove one of the original sources. It took ten minutes. Nobody had to understand the whole system to change one part of it.</p>
+
+      <h2>The discipline of simplicity</h2>
+
+      <p>Simple is hard. It's much easier to add complexity than to resist it. Every abstraction, every layer of indirection, every "just in case" feature — they all feel productive in the moment. But they're usually solving a problem you don't have yet.</p>
+
+      <p>Here's what I try to do instead:</p>
+
+      <ol>
+        <li><strong>Write the obvious thing first.</strong> The naive implementation is usually better than you think.</li>
+        <li><strong>Wait for the pattern to emerge.</strong> Don't abstract until you've done the same thing three times.</li>
+        <li><strong>Name things carefully.</strong> Good names are a form of documentation that never goes stale.</li>
+        <li><strong>Delete aggressively.</strong> Dead code is a lie that confuses future readers.</li>
+        <li><strong>Test the contract, not the implementation.</strong> Tests that break when you refactor are tests that prevent refactoring.</li>
+      </ol>
+
+      <hr />
+
+      <p>I'm not saying don't ship fast. I'm saying <strong>invest your speed wisely</strong>. The best engineers I know are fast precisely because they've internalized these habits. They don't agonize over architecture — they write the simple thing, ship it, and iterate.</p>
+
+      <p>The things that last aren't the clever things. They're the clear things. Build those.</p>
+    </article>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="container">
+    <div class="article-footer">
+      <div class="article-footer-inner">
+        <a href="../index.html" class="footer-back page-link">← all posts</a>
+        <span class="sig">●</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../post.js"></script>
+
+</body>
+</html>
