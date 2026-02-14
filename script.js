@@ -23,12 +23,12 @@ toggle.addEventListener('click', () => {
   localStorage.setItem('theme', next);
 });
 
-// ===== LIBRARY TABS =====
-document.querySelectorAll('.library-tab').forEach(tab => {
+// ===== SHELF TABS =====
+document.querySelectorAll('.shelf-tab').forEach(tab => {
   tab.addEventListener('click', () => {
     const target = tab.dataset.tab;
-    document.querySelectorAll('.library-tab').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.library-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.shelf-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.shelf-panel').forEach(p => p.classList.remove('active'));
     tab.classList.add('active');
     document.getElementById(`${target}-panel`).classList.add('active');
   });
