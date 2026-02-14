@@ -20,3 +20,15 @@ document.querySelectorAll('a.page-link').forEach(link => {
     setTimeout(() => { window.location.href = href; }, 250);
   });
 });
+
+// ===== BFCACHE FIX =====
+// Handle back/forward cache restoration
+window.addEventListener('pageshow', (e) => {
+  if (e.persisted) {
+    // Page was restored from bfcache, reset state
+    document.body.classList.remove('page-exit');
+    document.body.style.animation = 'none';
+    void document.body.offsetHeight; // Trigger reflow
+    document.body.style.animation = '';
+  }
+});
