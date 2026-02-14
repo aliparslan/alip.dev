@@ -568,10 +568,10 @@ section {
 }
 
 .reading-indicator {
-  display: inline-block;
+  display: flex;
+  align-self: center;
   flex-shrink: 0;
-  margin-left: 6px;
-  vertical-align: -2px;
+  margin-left: 2px; /* Tweaked this slightly to match the gap of the arrow better */
 }
 
 .reading-indicator svg {
