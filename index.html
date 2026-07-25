@@ -1,292 +1,118 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
-  <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark');</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Alip Arslan</title>
-  <meta name="description" content="Alip Arslan — developer, builder, thinker." />
-  <meta property="og:title" content="Alip Arslan" />
-  <meta property="og:description" content="Developer, builder, thinker." />
-  <meta property="og:type" content="website" />
+  <title>Alip Arslan — AI Engineer</title>
+  <meta name="description" content="Alip Arslan — AI engineer at Capital One." />
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+
+  <meta property="og:title" content="Alip Arslan — AI Engineer" />
+  <meta property="og:description" content="AI Engineer, Capital One." />
+  <meta property="og:type" content="profile" />
   <meta property="og:url" content="https://alip.dev" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='42' fill='%237352B5'/></svg>" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <meta property="og:image" content="https://alip.dev/static/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="canonical" href="https://alip.dev" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23000'/><text x='50' y='71' font-family='Helvetica,Arial,sans-serif' font-size='64' fill='%23fff' text-anchor='middle'>A</text></svg>" />
+
+  <!-- set theme before paint -->
+  <script>
+    (() => {
+      const t = localStorage.getItem('theme');
+      if (t && t !== 'system') document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav>
-    <div class="container">
-      <div class="nav-left">
-        <a href="index.html" class="nav-logo">
-          <span class="sig">●</span>
-          alip.dev
-        </a>
-        <ul class="nav-links">
-          <li><a href="#work">work</a></li>
-          <li><a href="#projects">projects</a></li>
-          <li><a href="#thoughts">thoughts</a></li>
-          <li><a href="#shelf">shelf</a></li>
-        </ul>
-      </div>
-      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
-        <span class="icon-sun">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
-        </span>
-        <span class="icon-moon">
-          <svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-        </span>
-      </button>
+  <main class="card">
+
+    <div class="card-top">
+      <h1 class="name">Alip Arslan</h1>
+      <p class="role">AI Engineer, Capital One</p>
     </div>
-  </nav>
 
-  <!-- MAIN -->
-  <main class="container">
-
-    <!-- HERO -->
-    <section class="hero">
-      <div class="hero-name-wrap">
-        <h1 class="hero-name">Alip Arslan</h1>
-      </div>
-      <p class="hero-bio fade-in">
-        Developer, builder, thinker. I like making things that are useful, beautiful, or both.
-        Currently exploring the intersection of design and engineering.
-        Find me on <a href="https://linkedin.com/in/aliparslan" target="_blank" rel="noopener">LinkedIn</a>, <a href="https://github.com/aliparslan" target="_blank" rel="noopener">GitHub</a>, or <a href="mailto:aliparslan@outlook.com">email me</a>!
+    <div class="card-bottom">
+      <p class="address">
+        <a href="mailto:aliparslan@outlook.com" class="email">aliparslan@outlook.com</a>
       </p>
-    </section>
+      <nav class="links" aria-label="Elsewhere">
+        <a href="resume.pdf" class="link" target="_blank" rel="noopener">Resume</a>
+        <button type="button" class="link" id="open-projects" aria-haspopup="dialog">Projects</button>
+        <a href="https://github.com/aliparslan" class="link" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://linkedin.com/in/aliparslan" class="link" target="_blank" rel="noopener">LinkedIn</a>
+      </nav>
+    </div>
 
-    <!-- WORK -->
-    <div class="section-divider"></div>
-    <section id="work" class="fade-in">
-      <div class="section-header">
-        <span class="sig">●</span>
-        <h2 class="section-title">work</h2>
-      </div>
-
-      <a href="#" class="work-item">
-        <div class="work-row">
-          <span class="work-company">Capital One</span>
-          <span class="work-period">2025 — present</span>
-        </div>
-        <div class="work-role">software engineer</div>
-        <div class="work-desc">chat concierge, real time scorer, ai workflows</div>
-      </a>
-
-      <a href="#" class="work-item">
-        <div class="work-row">
-          <span class="work-company">Sheffield Lab</span>
-          <span class="work-period">2022 — 2024</span>
-        </div>
-        <div class="work-role">research assistant</div>
-        <div class="work-desc">built metadata validation tool, vector search evaluation framework</div>
-      </a>
-
-      <a href="#" class="work-item">
-        <div class="work-row">
-          <span class="work-company">Northrop Grumman</span>
-          <span class="work-period">Jun - Aug 2023</span>
-        </div>
-        <div class="work-role">software engineer intern</div>
-        <div class="work-desc">containerized navy ecdis application, allowing navigation system to run on any os</div>
-      </a>
-
-    </section>
-
-    <!-- PROJECTS -->
-    <div class="section-divider"></div>
-    <section id="projects" class="fade-in">
-      <div class="section-header">
-        <span class="sig">●</span>
-        <h2 class="section-title">projects</h2>
-      </div>
-
-      <div class="project-grid">
-        <a href="https://breadwinner.alip.dev" class="project-card" target="_blank" rel="noopener">
-          <div class="project-card-top">
-            <span class="project-name">🍞 Breadwinner</span>
-            <span class="project-arrow">↗</span>
-          </div>
-          <p class="project-desc">Track your spending and understand where your money goes with AI insights.</p>
-          <div class="project-tech">
-            <span class="tag">typescript</span>
-            <span class="tag">gemini api</span>
-            <span class="tag">cloudflare</span>
-          </div>
-        </a>
-
-        <a href="https://github.com/aliparslan/hoosreading" class="project-card" target="_blank" rel="noopener">
-          <div class="project-card-top">
-            <span class="project-name">Hoosreading</span>
-            <span class="project-arrow">↗</span>
-          </div>
-          <p class="project-desc">Adapt any webpage to your reading level with this extension!</p>
-          <div class="project-tech">
-            <span class="tag">javascript</span>
-            <span class="tag">nlp</span>
-            <span class="tag">chrome extension</span>
-          </div>
-        </a>
-
-        <!-- <a href="#" class="project-card" target="_blank" rel="noopener">
-          <div class="project-card-top">
-            <span class="project-name">project-three</span>
-            <span class="project-arrow">↗</span>
-          </div>
-          <p class="project-desc">A fun experiment or side project. Might be a game, might be an app.</p>
-          <div class="project-tech">
-            <span class="tag">swift</span>
-            <span class="tag">swiftui</span>
-          </div>
-        </a> -->
-      </div>
-    </section>
-
-    <!-- THOUGHTS -->
-    <div class="section-divider"></div>
-    <section id="thoughts" class="fade-in">
-      <div class="section-header">
-        <span class="sig">●</span>
-        <h2 class="section-title">thoughts</h2>
-      </div>
-
-      <p class="empty-message">Still thinking...</p>
-      <!--
-      <a href="thoughts/building-things-that-last.html" class="thought-item page-link">
-        <span class="thought-title">On building things that last</span>
-        <span class="thought-date">feb 2026</span>
-      </a>
-      <a href="#" class="thought-item">
-        <span class="thought-title">Why I switched to vanilla CSS</span>
-        <span class="thought-date">jan 2026</span>
-      </a>
-      <a href="#" class="thought-item">
-        <span class="thought-title">The joy of small software</span>
-        <span class="thought-date">dec 2025</span>
-      </a>
-      <a href="#" class="thought-item">
-        <span class="thought-title">Design engineering is underrated</span>
-        <span class="thought-date">nov 2025</span>
-      </a>
-      <a href="#" class="thought-item">
-        <span class="thought-title">Lessons from shipping fast</span>
-        <span class="thought-date">oct 2025</span>
-      </a>
-      -->
-    </section>
-
-    <!-- SHELF -->
-    <div class="section-divider"></div>
-    <section id="shelf" class="fade-in">
-      <div class="section-header">
-        <span class="sig">●</span>
-        <h2 class="section-title">shelf</h2>
-      </div>
-
-      <div class="shelf-tabs">
-        <button class="shelf-tab active" data-tab="books">books</button>
-        <button class="shelf-tab" data-tab="movies">movies</button>
-      </div>
-
-      <div id="books-panel" class="shelf-panel active">
-        <div class="shelf-grid">
-          <div class="shelf-item">
-            <div class="shelf-cover" style="background-image: url('static/kite-runner.jpg');">
-              <!-- <span class="shelf-cover-text">The<br/>Kite<br/>Runner</span> -->
-            </div>
-            <span class="shelf-label-row"><span class="shelf-label">The Kite Runner</span><span class="reading-indicator"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span></span>
-            <span class="shelf-sub">Khaled Hosseini</span>
-          </div>
-          <div class="shelf-item">
-            <div class="shelf-cover" style="background-image: url('static/east-of-eden.jpg');">
-              <!-- <span class="shelf-cover-text">East<br/>of<br/>Eden</span> -->
-            </div>
-            <span class="shelf-label-row"><span class="shelf-label">East of Eden</span><span class="reading-indicator"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span></span>
-            <span class="shelf-sub">John Steinbeck</span>
-          </div>
-          <div class="shelf-item">
-            <div class="shelf-cover" style="background-image: url('static/blood-meridian.png');">
-              <!-- <span class="shelf-cover-text">Blood Meridian</span> -->
-            </div>
-            <span class="shelf-label">Blood Meridian</span>
-            <span class="shelf-sub">Cormac McCarthy</span>
-          </div>
-          <div class="shelf-item">
-            <a href="shelf/project-hail-mary.html" class="page-link">
-              <div class="shelf-cover" style="background-image: url('static/project-hail-mary.jpg');">
-                <!-- <span class="shelf-cover-text">Project<br/>Hail<br/>Mary</span> -->
-              </div>
-              <span class="shelf-label-row"><span class="shelf-label">Project Hail Mary</span><span class="review-arrow">↗</span></span>
-              <span class="shelf-sub">Andy Weir</span>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div id="movies-panel" class="shelf-panel">
-        <div class="shelf-grid">
-          <div class="shelf-item">
-            <div class="shelf-cover" style="background-image: url('static/how-to-lose-a-guy.jpg');">
-              <!-- <span class="shelf-cover-text">How to<br/>Lose a<br/>Guy</span> -->
-            </div>
-            <span class="shelf-label">How to Lose a Guy in 10 Days</span>
-            <span class="shelf-sub">2003</span>
-          </div>
-          <div class="shelf-item">
-            <div class="shelf-cover" style="background-image: url('static/good-will-hunting.jpg');">
-              <!-- <span class="shelf-cover-text">Good<br/>Will<br/>Hunting</span> -->
-            </div>
-            <span class="shelf-label">Good Will Hunting</span>
-            <span class="shelf-sub">1997</span>
-          </div>
-          <div class="shelf-item">
-            <div class="shelf-cover" style="background-image: url('static/click.jpg');">
-              <!-- <span class="shelf-cover-text">Click</span> -->
-            </div>
-            <span class="shelf-label">Click</span>
-            <span class="shelf-sub">2006</span>
-          </div>
-          <div class="shelf-item">
-            <a href="shelf/over-the-hedge.html" class="page-link">
-              <div class="shelf-cover" style="background-image: url('static/over-the-hedge.jpg');">
-                <!-- <span class="shelf-cover-text">Over<br/>the<br/>Hedge</span> -->
-              </div>
-              <span class="shelf-label-row"><span class="shelf-label">Over the Hedge</span><span class="review-arrow">↗</span></span>
-              <span class="shelf-sub">2006</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONNECT -->
-    <div class="section-divider"></div>
-    <section id="connect" class="fade-in">
-      <div class="section-header">
-        <span class="sig">●</span>
-        <h2 class="section-title">connect</h2>
-      </div>
-
-      <div class="connect-grid">
-        <a href="https://github.com/aliparslan" class="connect-link" target="_blank" rel="noopener">github ↗</a>
-        <a href="https://linkedin.com/in/aliparslan" class="connect-link" target="_blank" rel="noopener">linkedin ↗</a>
-        <a href="mailto:aliparslan@outlook.com" class="connect-link">email ↗</a>
-        <a href="resume.pdf" class="connect-link">resume ↗</a>
-      </div>
-    </section>
   </main>
 
-  <!-- FOOTER -->
-  <div class="section-divider" style="max-width:640px;margin:0 auto;padding:0 24px;"><div style="height:1px;background:var(--border);transition:background var(--transition-color);"></div></div>
-  <footer>
-    <div class="container">
-      <span class="footer-text">© 2026 alip arslan</span>
-      <span class="sig">●</span>
+  <dialog id="projects" class="sheet" aria-labelledby="projects-title">
+    <div class="sheet-inner">
+
+      <div class="sheet-head">
+        <h2 class="sheet-title" id="projects-title">Projects</h2>
+        <button type="button" class="sheet-close" id="close-projects" aria-label="Close">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13"/></svg>
+        </button>
+      </div>
+
+      <ul class="project-list">
+        <li>
+          <a href="https://pinkslip.alip.dev" target="_blank" rel="noopener">
+            <span class="project-head">
+              <span class="project-name">Pinkslip</span>
+              <span class="project-year">2026</span>
+            </span>
+            <span class="project-desc">Job alerts that find you — polls listings, dedupes matches, pushes to your phone.</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/aliparslan/anchor" target="_blank" rel="noopener">
+            <span class="project-head">
+              <span class="project-name">Anchor</span>
+              <span class="project-year">2026</span>
+            </span>
+            <span class="project-desc">A calm, grayscale dashboard for focus, habits, and reading.</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://breadwinner.alip.dev" target="_blank" rel="noopener">
+            <span class="project-head">
+              <span class="project-name">Breadwinner</span>
+              <span class="project-year">2025</span>
+            </span>
+            <span class="project-desc">Personal finance with statement ingestion and AI spending insights.</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/aliparslan/hoosreading" target="_blank" rel="noopener">
+            <span class="project-head">
+              <span class="project-name">Hoosreading</span>
+              <span class="project-year">2025</span>
+            </span>
+            <span class="project-desc">A browser extension that adapts any webpage to your reading level.</span>
+          </a>
+        </li>
+      </ul>
+
     </div>
-  </footer>
+  </dialog>
+
+  <!-- ============================================================
+       DEBUG PANEL — delete this block, the matching block in
+       script.js, and the .debug rules in styles.css before shipping.
+       ============================================================ -->
+  <aside class="debug" aria-label="Debug controls">
+    <button type="button" id="theme-btn" class="debug-btn">theme: system</button>
+  </aside>
+  <!-- ===================== END DEBUG PANEL ===================== -->
 
   <script src="script.js"></script>
 
