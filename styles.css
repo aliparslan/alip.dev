@@ -75,6 +75,9 @@ body {
   transition: transform 0.7s var(--ease);
 }
 
+.card.dragging,
+.card.normalizing { transition: none; }
+
 .card.flipped { transform: rotateY(180deg); }
 
 .face {
