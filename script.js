@@ -3,7 +3,6 @@ const frontFace = document.getElementById('front');
 const backFace = document.getElementById('back');
 const showBackButton = document.getElementById('flip-to-back');
 const showFrontButton = document.getElementById('flip-to-front');
-const finePointer = window.matchMedia('(pointer: fine)').matches;
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 function setFlipped(showBack, moveFocus = true) {
@@ -82,8 +81,8 @@ window.addEventListener('pointermove', (event) => {
   if (reducedMotion) return;
 
   const progress = Math.min(Math.abs(deltaX) / (swipeStart.width * 0.65), 1);
-  const baseAngle = swipeStart.wasFlipped ? 180 : 0;
-  const angle = baseAngle - Math.sign(deltaX) * progress * 180;
+  const baseAngle = swipeStart.wasFlipped ? -180 : 0;
+  const angle = baseAngle + Math.sign(deltaX) * progress * 180;
 
   card.classList.add('dragging');
   card.style.transform = `rotateY(${angle}deg)`;
@@ -116,9 +115,9 @@ window.addEventListener('pointerup', (event) => {
     return;
   }
 
-  const baseAngle = gesture.wasFlipped ? 180 : 0;
+  const baseAngle = gesture.wasFlipped ? -180 : 0;
   const targetAngle = shouldFlip
-    ? baseAngle - Math.sign(deltaX) * 180
+    ? baseAngle + Math.sign(deltaX) * 180
     : baseAngle;
   settleDrag(showBack, targetAngle, shouldFlip);
 });
@@ -129,7 +128,7 @@ window.addEventListener('pointercancel', (event) => {
   const gesture = swipeStart;
   swipeStart = null;
   if (gesture.dragging && !reducedMotion) {
-    settleDrag(gesture.wasFlipped, gesture.wasFlipped ? 180 : 0, false);
+    settleDrag(gesture.wasFlipped, gesture.wasFlipped ? -180 : 0, false);
   }
 });
 
@@ -141,78 +140,3 @@ card.addEventListener('click', (event) => {
   event.preventDefault();
   event.stopPropagation();
 }, true);
-
-// Pointer tilt
-const scene = document.querySelector('.scene');
-const tilt = document.querySelector('.tilt');
-
-if (finePointer && !reducedMotion) {
-  const MAX_TILT = 2.2;
-  const EASING = 0.12;
-  let targetX = 0;
-  let targetY = 0;
-  let currentX = 0;
-  let currentY = 0;
-  let running = false;
-
-  function clampUnit(value) {
-    return Math.max(-1, Math.min(1, value));
-  }
-
-  function renderTilt() {
-    currentX += (targetX - currentX) * EASING;
-    currentY += (targetY - currentY) * EASING;
-
-    const settled =
-      Math.abs(targetX - currentX) < 0.005 &&
-      Math.abs(targetY - currentY) < 0.005;
-    if (settled) {
-      currentX = targetX;
-      currentY = targetY;
-    }
-
-    // Remove the transform at rest so text and hairlines stay crisp.
-    tilt.style.transform = (currentX === 0 && currentY === 0)
-      ? ''
-      : `rotateX(${currentX.toFixed(2)}deg) rotateY(${currentY.toFixed(2)}deg)`;
-
-    if (settled) {
-      running = false;
-      return;
-    }
-    window.requestAnimationFrame(renderTilt);
-  }
-
-  function requestTiltFrame() {
-    if (running) return;
-    running = true;
-    window.requestAnimationFrame(renderTilt);
-  }
-
-  window.addEventListener('pointermove', (event) => {
-    if (event.pointerType !== 'mouse') return;
-
-    const bounds = scene.getBoundingClientRect();
-    const insideScene =
-      event.clientX >= bounds.left &&
-      event.clientX <= bounds.right &&
-      event.clientY >= bounds.top &&
-      event.clientY <= bounds.bottom;
-
-    if (!insideScene) {
-      targetX = 0;
-      targetY = 0;
-      requestTiltFrame();
-      return;
-    }
-
-    const horizontalPosition =
-      (event.clientX - bounds.left - bounds.width / 2) / (bounds.width / 2);
-    const verticalPosition =
-      (event.clientY - bounds.top - bounds.height / 2) / (bounds.height / 2);
-
-    targetY = clampUnit(horizontalPosition) * MAX_TILT;
-    targetX = clampUnit(verticalPosition) * -MAX_TILT;
-    requestTiltFrame();
-  }, { passive: true });
-}
