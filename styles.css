@@ -27,6 +27,7 @@
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
   --bg: #e9e7e2;
   --card: #fbfaf7;
+  --card-edge: #d9d6cf;
   --fg: #1b1a17;
   --edge: rgba(27, 26, 23, 0.22);
 }
@@ -35,6 +36,7 @@
   :root {
     --bg: #0d0d0c;
     --card: #181714;
+    --card-edge: #2a2823;
     --fg: #eae7e0;
     --edge: rgba(234, 231, 224, 0.2);
   }
@@ -79,6 +81,7 @@ body {
 }
 
 .card {
+  --card-thickness: 3px;
   /* Every internal measurement scales from this value. */
   font-size: clamp(0.8125rem, 3.15cqw, 1.3rem);
   aspect-ratio: 1.75 / 1;
@@ -93,6 +96,22 @@ body {
 
 .card.flipped { transform: rotateY(-180deg); }
 
+.card::before,
+.card::after {
+  content: '';
+  position: absolute;
+  top: 1px;
+  bottom: 1px;
+  width: var(--card-thickness);
+  background: var(--card-edge);
+  border-radius: 1px;
+  transform: rotateY(90deg);
+  pointer-events: none;
+}
+
+.card::before { left: calc(var(--card-thickness) / -2); }
+.card::after { right: calc(var(--card-thickness) / -2); }
+
 .face {
   position: absolute;
   inset: 0;
@@ -101,15 +120,21 @@ body {
   background-color: var(--card);
   border: 0;
   border-radius: 2px;
-  box-shadow: inset 0 0 1px 0.5px var(--edge);
+  box-shadow: inset 0 0 0 0.5px var(--edge);
   padding: 2em;
   display: flex;
   flex-direction: column;
   transition: background-color 0.3s ease;
 }
 
-.front { justify-content: space-between; }
-.back  { transform: rotateY(-180deg); }
+.front {
+  justify-content: space-between;
+  transform: translateZ(calc(var(--card-thickness) / 2));
+}
+
+.back {
+  transform: rotateY(-180deg) translateZ(calc(var(--card-thickness) / 2));
+}
 
 /* Front */
 .name,
@@ -350,6 +375,9 @@ body {
     transform: none;
   }
 
+  .card::before,
+  .card::after { display: none; }
+
   .face {
     border: 0.5pt solid #999;
     box-shadow: none;
@@ -357,6 +385,7 @@ body {
     padding: 0.26in;
   }
 
+  .front { transform: none; }
   .back { display: none; }
 
   .name,
