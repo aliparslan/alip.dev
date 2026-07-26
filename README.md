@@ -1,15 +1,18 @@
 # alip.dev
 
-A single-page calling card. Static HTML, CSS, and a little JS — no build step,
-no dependencies, no webfonts.
+A single-page calling card. Static HTML, CSS, and a little JS — no build step
+or runtime dependencies.
 
 ```
-index.html      the card + the projects dialog
-styles.css      all styles (Helvetica, one colour, light/dark)
-script.js       dialog behaviour + the debug panel
-_headers        Cloudflare Pages — serves resume.pdf inline
-static/og.png   link-preview image (referenced by the og:image meta tag)
-resume.pdf      linked from the card
+index.html          the two-sided card and project links
+404.html            the custom not-found page
+styles.css          layout, typography, themes, and print styles
+script.js           flip, swipe, keyboard, and tilt interactions
+_headers            Cloudflare Pages response headers
+static/og.png       social preview image
+static/favicon.png  favicon and touch icon
+fonts/              the three font faces used by the card
+resume.pdf          linked from the card
 ```
 
 Run it locally with any static server:
@@ -18,14 +21,8 @@ Run it locally with any static server:
 python3 -m http.server 4321
 ```
 
-## Before shipping
-
-There's a **debug panel** pinned to the bottom-right (the theme cycler). It's
-marked with `DEBUG PANEL` comments in `index.html`, `styles.css`, and
-`script.js` — delete all three blocks when it's no longer useful.
-
-Theme follows the system preference by default; the toggle only overrides it
-locally via `localStorage`.
+The bundled Founders Grotesk files are evaluation fonts. Replace them with
+licensed retail webfonts before publishing.
 
 If the card's text or layout changes, regenerate `static/og.png` to match, or
 the link preview will drift out of sync with the page.

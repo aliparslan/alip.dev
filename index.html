@@ -1,120 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Alip Arslan — AI Engineer</title>
-  <meta name="description" content="Alip Arslan — AI engineer at Capital One." />
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-  <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+  <meta name="description" content="Alip Arslan — AI engineer at Capital One.">
+  <meta name="theme-color" content="#e9e7e2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0d0d0c" media="(prefers-color-scheme: dark)">
 
-  <meta property="og:title" content="Alip Arslan — AI Engineer" />
-  <meta property="og:description" content="AI Engineer, Capital One." />
-  <meta property="og:type" content="profile" />
-  <meta property="og:url" content="https://alip.dev" />
-  <meta property="og:image" content="https://alip.dev/static/og.png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta name="twitter:card" content="summary_large_image" />
+  <meta property="og:title" content="Alip Arslan — AI Engineer">
+  <meta property="og:description" content="AI Engineer, Capital One.">
+  <meta property="og:type" content="profile">
+  <meta property="og:url" content="https://alip.dev/">
+  <meta property="og:image" content="https://alip.dev/static/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Alip Arslan's digital business card">
+  <meta name="twitter:card" content="summary_large_image">
 
-  <link rel="canonical" href="https://alip.dev" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23000'/><text x='50' y='71' font-family='Helvetica,Arial,sans-serif' font-size='64' fill='%23fff' text-anchor='middle'>A</text></svg>" />
+  <link rel="canonical" href="https://alip.dev/">
+  <link rel="icon" href="/static/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="/static/favicon.png">
 
-  <!-- set theme before paint -->
-  <script>
-    (() => {
-      const t = localStorage.getItem('theme');
-      if (t && t !== 'system') document.documentElement.setAttribute('data-theme', t);
-    })();
-  </script>
+  <link rel="preload" href="/fonts/founders-grotesk-text-regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/founders-grotesk-medium.woff2" as="font" type="font/woff2" crossorigin>
 
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
 
-  <main class="card">
+  <main class="scene">
+    <div class="tilt">
+      <article class="card" id="card">
 
-    <div class="card-top">
-      <h1 class="name">Alip Arslan</h1>
-      <p class="role">AI Engineer, Capital One</p>
+        <section class="face front" id="front">
+          <div>
+            <h1 class="name">Alip Arslan</h1>
+            <p class="role">AI Engineer, Capital One</p>
+          </div>
+
+          <div class="card-bottom">
+            <p class="address">
+              <a href="mailto:aliparslan@outlook.com" class="email">aliparslan@outlook.com</a>
+            </p>
+            <nav class="links" aria-label="Elsewhere">
+              <a href="/resume.pdf" class="link" target="_blank" rel="noopener">Resume</a>
+              <button type="button" class="link" id="flip-to-back" aria-expanded="false" aria-controls="back">Projects</button>
+              <a href="https://github.com/aliparslan" class="link" target="_blank" rel="noopener">GitHub</a>
+              <a href="https://linkedin.com/in/aliparslan" class="link" target="_blank" rel="noopener">LinkedIn</a>
+            </nav>
+          </div>
+        </section>
+
+        <section class="face back" id="back" aria-label="Projects" inert>
+          <div class="back-head">
+            <button type="button" class="flip-btn" id="flip-to-front">
+              <svg class="arrow arrow-back" viewBox="0 0 10 10" aria-hidden="true">
+                <path d="M9.2 5H1.4M4.6 1.8 1.4 5l3.2 3.2" />
+              </svg>
+              <span>Flip</span>
+            </button>
+          </div>
+
+          <ul class="project-list">
+            <li>
+              <a href="https://pinkslip.alip.dev" target="_blank" rel="noopener">
+                <span class="project-head">
+                  <span class="project-name">Pinkslip</span>
+                  <svg class="arrow arrow-out" viewBox="0 0 10 10" aria-hidden="true">
+                    <path d="M0.8 9.2 9.2 0.8M3.6 0.8h5.6v5.6" />
+                  </svg>
+                </span>
+                <span class="project-desc">
+                  <span class="project-desc-full">Job alerts, pushed to your phone</span>
+                  <span class="project-desc-short">Job alerts sent to your phone</span>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com/aliparslan/anchor" target="_blank" rel="noopener">
+                <span class="project-head">
+                  <span class="project-name">Anchor</span>
+                  <svg class="arrow arrow-out" viewBox="0 0 10 10" aria-hidden="true">
+                    <path d="M0.8 9.2 9.2 0.8M3.6 0.8h5.6v5.6" />
+                  </svg>
+                </span>
+                <span class="project-desc">
+                  <span class="project-desc-full">A calm and minimal personal dashboard</span>
+                  <span class="project-desc-short">Minimal personal dashboard</span>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a href="https://breadwinner.alip.dev" target="_blank" rel="noopener">
+                <span class="project-head">
+                  <span class="project-name">Breadwinner</span>
+                  <svg class="arrow arrow-out" viewBox="0 0 10 10" aria-hidden="true">
+                    <path d="M0.8 9.2 9.2 0.8M3.6 0.8h5.6v5.6" />
+                  </svg>
+                </span>
+                <span class="project-desc">
+                  <span class="project-desc-full">Track spending habits with AI insights</span>
+                  <span class="project-desc-short">AI spending insights</span>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com/aliparslan/hoosreading" target="_blank" rel="noopener">
+                <span class="project-head">
+                  <span class="project-name">Hoosreading</span>
+                  <svg class="arrow arrow-out" viewBox="0 0 10 10" aria-hidden="true">
+                    <path d="M0.8 9.2 9.2 0.8M3.6 0.8h5.6v5.6" />
+                  </svg>
+                </span>
+                <span class="project-desc">
+                  <span class="project-desc-full">Adapts webpages to your reading level</span>
+                  <span class="project-desc-short">Adaptive reading tool</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </section>
+
+      </article>
     </div>
-
-    <div class="card-bottom">
-      <p class="address">
-        <a href="mailto:aliparslan@outlook.com" class="email">aliparslan@outlook.com</a>
-      </p>
-      <nav class="links" aria-label="Elsewhere">
-        <a href="resume.pdf" class="link" target="_blank" rel="noopener">Resume</a>
-        <button type="button" class="link" id="open-projects" aria-haspopup="dialog">Projects</button>
-        <a href="https://github.com/aliparslan" class="link" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://linkedin.com/in/aliparslan" class="link" target="_blank" rel="noopener">LinkedIn</a>
-      </nav>
-    </div>
-
   </main>
 
-  <dialog id="projects" class="sheet" aria-labelledby="projects-title">
-    <div class="sheet-inner">
-
-      <div class="sheet-head">
-        <h2 class="sheet-title" id="projects-title">Projects</h2>
-        <button type="button" class="sheet-close" id="close-projects" aria-label="Close">
-          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13"/></svg>
-        </button>
-      </div>
-
-      <ul class="project-list">
-        <li>
-          <a href="https://pinkslip.alip.dev" target="_blank" rel="noopener">
-            <span class="project-head">
-              <span class="project-name">Pinkslip</span>
-              <span class="project-year">2026</span>
-            </span>
-            <span class="project-desc">Job alerts that find you — polls listings, dedupes matches, pushes to your phone.</span>
-          </a>
-        </li>
-        <li>
-          <a href="https://github.com/aliparslan/anchor" target="_blank" rel="noopener">
-            <span class="project-head">
-              <span class="project-name">Anchor</span>
-              <span class="project-year">2026</span>
-            </span>
-            <span class="project-desc">A calm, grayscale dashboard for focus, habits, and reading.</span>
-          </a>
-        </li>
-        <li>
-          <a href="https://breadwinner.alip.dev" target="_blank" rel="noopener">
-            <span class="project-head">
-              <span class="project-name">Breadwinner</span>
-              <span class="project-year">2025</span>
-            </span>
-            <span class="project-desc">Personal finance with statement ingestion and AI spending insights.</span>
-          </a>
-        </li>
-        <li>
-          <a href="https://github.com/aliparslan/hoosreading" target="_blank" rel="noopener">
-            <span class="project-head">
-              <span class="project-name">Hoosreading</span>
-              <span class="project-year">2025</span>
-            </span>
-            <span class="project-desc">A browser extension that adapts any webpage to your reading level.</span>
-          </a>
-        </li>
-      </ul>
-
-    </div>
-  </dialog>
-
-  <!-- ============================================================
-       DEBUG PANEL — delete this block, the matching block in
-       script.js, and the .debug rules in styles.css before shipping.
-       ============================================================ -->
-  <aside class="debug" aria-label="Debug controls">
-    <button type="button" id="theme-btn" class="debug-btn">theme: system</button>
-  </aside>
-  <!-- ===================== END DEBUG PANEL ===================== -->
-
-  <script src="script.js"></script>
+  <script src="/script.js"></script>
 
 </body>
 </html>

@@ -1,5 +1,3 @@
-# Cloudflare Pages response headers.
-# Serve the resume in the browser's PDF viewer rather than as a download.
 /resume.pdf
   Content-Type: application/pdf
   Content-Disposition: inline; filename="Alip_Arslan_resume.pdf"
