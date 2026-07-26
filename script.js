@@ -35,7 +35,9 @@ function settleDrag(showBack, targetAngle, moveFocus) {
   card.classList.remove('dragging');
 
   window.requestAnimationFrame(() => {
-    function finish() {
+    function finish(event) {
+      if (event && event.target !== card) return;
+
       card.removeEventListener('transitionend', finish);
       clearTimeout(dragCleanupTimer);
       card.classList.add('normalizing');

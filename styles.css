@@ -1,6 +1,5 @@
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-/* Replace these evaluation files with licensed web fonts before publishing. */
 @font-face {
   font-family: 'Founders Grotesk';
   src: url('/fonts/founders-grotesk-medium.woff2') format('woff2');
@@ -29,6 +28,9 @@
   --card: #fbfaf7;
   --fg: #1b1a17;
   --edge: rgba(27, 26, 23, 0.22);
+  --ambient-center: #f0eee9;
+  --ambient-edge: #e3e0da;
+  --card-shadow: rgba(27, 26, 23, 0.1);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -37,6 +39,9 @@
     --card: #181714;
     --fg: #eae7e0;
     --edge: rgba(234, 231, 224, 0.2);
+    --ambient-center: #141310;
+    --ambient-edge: #090908;
+    --card-shadow: rgba(0, 0, 0, 0.32);
   }
 }
 
@@ -47,6 +52,17 @@ body {
   padding: clamp(1rem, 4vw, 3rem);
   font-family: var(--font);
   background-color: var(--bg);
+  background-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 140 140' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' opacity='.14' filter='url(%23n)'/%3E%3C/svg%3E"),
+    radial-gradient(
+      ellipse at 50% 44%,
+      var(--ambient-center) 0%,
+      var(--bg) 58%,
+      var(--ambient-edge) 100%
+    );
+  background-repeat: repeat, no-repeat;
+  background-size: 140px 140px, 100% 100%;
+  background-blend-mode: soft-light, normal;
   color: var(--fg);
   transition: background-color 0.3s ease, color 0.3s ease;
 }
@@ -101,7 +117,9 @@ body {
   background-color: var(--card);
   border: 0;
   border-radius: 2px;
-  box-shadow: inset 0 0 0 2px var(--edge);
+  box-shadow:
+    inset 0 0 0 2px var(--edge),
+    0 1.25em 2.4em -0.9em var(--card-shadow);
   padding: 2em;
   display: flex;
   flex-direction: column;
@@ -126,7 +144,7 @@ body {
   font-family: 'Founders Grotesk', var(--font);
   font-weight: 500;
   letter-spacing: -0.01em;
-  line-height: 1.02;
+  line-height: 1.06;
   margin-inline-start: -0.035em;
 }
 
@@ -316,7 +334,9 @@ body {
 /* Small screens */
 @media (max-width: 30rem) {
   .face {
-    box-shadow: inset 0 0 0 1px var(--edge);
+    box-shadow:
+      inset 0 0 0 1px var(--edge),
+      0 1em 2em -0.9em var(--card-shadow);
     padding: 1.25em;
   }
   .name,
